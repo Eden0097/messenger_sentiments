@@ -14,17 +14,15 @@ function injectSentiments(data) {
 	var sentiments = data;
 	for (var i = 0; i < messages.length; i++) {
 		var sent = parseFloat(sentiments[i]); 
-		var add = "<b>[Sentiment: " + sent;
+		var add = "<b>[Sentiment: " + sent + " ";
 		if (sent < 0.1) { add = add + ":sob:";}
 		else if (sent < 0.3) {add = add + ":disappointed:";}
 		else if (sent < 0.5) { add = add + ":worried:";}
 		else if (sent < 0.7) { add = add + ":simple_smile:";}
 		else { add = add + ":relaxed:";}
-		add = add.concat("]</b>");
+		add = add.concat(" ]</b>");
 		if (!messages[i].innerHTML.includes("<b>[Sentiment: ")) {
 			messages[i].innerHTML = messages[i].innerText + " " + add;
 		}
 	}
-	// emojify.setConfig({emojify_tag_type:'span', ignore_emoticon: 'true'});
-	// emojify.run();
 }

@@ -1,7 +1,7 @@
-function getSentiment(phrase) {
+function getSentiment(phrase, myid) {
 	console.log("getting sentiment");
 	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", "https://fierce-plateau-62887.herokuapp.com/MSAPITest.php?text=" + phrase, false);
+	xmlHttp.open("GET", "https://fierce-plateau-62887.herokuapp.com/MSAPITest.php?text=" + phrase + "&chromeExtensionID=" + myid, false);
 	xmlHttp.send(null);
 	return xmlHttp.responseText;
 	/*

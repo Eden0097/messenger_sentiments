@@ -5,6 +5,7 @@
 /**
  * When the site finishes loading, we attach a listener to check if any new messages have been inserted.
  */
+var myid = chrome.runtime.id;
 var last_msg;
 var first_load = true;
 
@@ -25,14 +26,14 @@ function scrapeMessages() {
 		for (var i = 0; i < messages.length; i++) {
 			msg.push(messages[i].innerText);
 			//sentiments.push(Math.random());
-			sentiments.push(getSentiment(msg[i]));
+			sentiments.push(getSentiment(msg[i], myid));
 		}
 		injectSentiments(sentiments);
 	}
 	else {
 		for (var i = last_msg; i < messages.length; i++) {
 			msg.push(messages[i].innerText);
-			sentiments.push(getSentiment(msg[i]));
+			sentiments.push(getSentiment(msg[i], myid));
 		}
 		injectSentiments(sentiments);
 	}
