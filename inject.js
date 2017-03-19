@@ -2,9 +2,8 @@ console.log("injected");
 
 window.onload = function() {
 	var lookedAt = false;
-	$('.uiScrollableAreaContent').bind("DOMSubtreeModified", function() {
+	$('.uiScrollableAreaContent').on("DOMNodeInserted", function() {
 		var msg = [];
-		if (!lookedAt) {
 			var messages = document.getElementsByClassName("_58nk");
 			for (var i = 0; i < messages.length; i++) {
 				msg.push(messages[i].innerText);
@@ -14,7 +13,6 @@ window.onload = function() {
 			lookedAt = true;
 
 			// var sentiments = getSentiments(msg);
-		}
 	});
 };
 
