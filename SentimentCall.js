@@ -1,5 +1,5 @@
 function getSentiment(phrase) {
-	$.post( "http://www.areslee.com/nwhack2017/test.php", function( data ) {
+	$.post( "https://fierce-plateau-62887.herokuapp.com/MSAPITest.php", function( data ) {
 		return data.toString();
 	});
 /*

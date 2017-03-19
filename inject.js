@@ -13,6 +13,16 @@ function injectSentiments(data) {
 	var messages = document.getElementsByClassName("_58nk");
 	var sentiments = data;
 	for (var i = 0; i < messages.length; i++) {
-		messages[i].innerText = messages[i].innerText + " " + sentiments[i];
+		var sent = parseFloat(sentiments[i]); 
+		var add = "<b>[Sentiment: ";
+		if (sent < 0.1) { add.concat(":sob:");}
+		else if (sent < 0.3) { add.concat(":disappointed:");}
+		else if (sent < 0.5) { add.concat(":worried:");}
+		else if (sent < 0.7) { add.concat(":simple_smile:");}
+		else { add.concat(":relaxed:");}
+		add.concat("]</b>");
+		messages[i].innerHTML = messages[i].innerText + " " + add;
 	}
+	emojify.setConfig({emojify_tag_type:'span', ignore_emoticon: 'true'});
+	emojify.run();
 }
