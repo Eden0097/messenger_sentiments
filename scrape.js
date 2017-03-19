@@ -5,6 +5,9 @@
 /**
  * When the site finishes loading, we attach a listener to check if any new messages have been inserted.
  */
+var last_msg;
+var first_load = true;
+
 window.onload = function() {
 	$('.uiScrollableAreaContent').on("DOMNodeInserted", function() {
 			scrapeMessages();
@@ -18,12 +21,23 @@ function scrapeMessages() {
 	var msg = [];
 	var messages = document.getElementsByClassName("_58nk");
 	var sentiments = [];
-	for (var i = 0; i < messages.length; i++) {
-		msg.push(messages[i].innerText);
-		sentiments.push(Math.random());
-		// sentiments.push(getSentiment(msg[i]));
+	if (first_load) {
+		for (var i = 0; i < messages.length; i++) {
+			msg.push(messages[i].innerText);
+			sentiments.push(Math.random());
+			// sentiments.push(getSentiment(msg[i]));
+		}
 	}
-	injectSentiments(sentiments);
+	else {
+		for (var i = last_msg; i < messages.length; i++) {
+			msg.push(messages[i].innerText);
+			injectSentiments(sentiments);
+		}
+	}
+	first_load = false;
+	last_msg = messages.length;
+	console.log(msg);
+	console.log(last_msg);
 }
 
 /**

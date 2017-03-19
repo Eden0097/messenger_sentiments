@@ -1,20 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.getElementById('checkPage');
-  checkPageButton.addEventListener('click', function() {
+window.onload = function() {
+    // Displaying Score
+    var score = 0;
+    var currentScore = document.getElementById('currentScore');
+    currentScore.innerHTML = "Score: " + calculateScore(score);
+    // Displaying Time
+    var currentTime = document.getElementById('currentTime');
+    var currentdate = new Date(); 
+    var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+    currentTime.innerHTML = datetime;
+};
 
-    chrome.tabs.getSelected(null, function(tab) {
-      d = document;
-
-      var f = d.createElement('form');
-      f.action = 'https://gtmetrix.com/';
-      f.method = 'post';
-      var i = d.createElement('input');
-      i.type = 'hidden';
-      i.name = 'url';
-      i.value = tab.url;
-      f.appendChild(i);
-      d.body.appendChild(f);
-      f.submit();
-    });
-  }, false);
-}, false);
+function calculateScore(s) {
+    return s;
+}
