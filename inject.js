@@ -1,8 +1,6 @@
 console.log("injected");
 
-var msg = [];
 window.onload = function() {
-	var lookedAt = false;
 	$('.uiScrollableAreaContent').on("DOMNodeInserted", function() {
 			scrapeMessages();
 		});
@@ -11,14 +9,13 @@ window.onload = function() {
 function scrapeMessages() {
 	var msg = [];
 	var messages = document.getElementsByClassName("_58nk");
+	var sentiments = [];
 	for (var i = 0; i < messages.length; i++) {
 		msg.push(messages[i].innerText);
+		sentiments.push(getSentiment(msg[i]));
 	}
-	msg = parseData(msg);
-	console.log(msg);
-	lookedAt = true;
 
-	// var sentiments = getSentiments(msg);
+	console.log(sentiments);
 }
 
 function parseData(msg) {

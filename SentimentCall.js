@@ -1,15 +1,18 @@
 function getSentiment(phrase) {
+	$.post( "http://www.areslee.com/nwhack2017/test.php", function( data ) {
+		return data.toString();
+	});
+/*
     $(function() {
         var params = {
             // Request parameters
         };
         
         $.ajax({
-            url: "https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" + $.param(params),
+			url: "http://www.areslee.com/nwhack2017/test.php?" + $.param(params),
             beforeSend: function(xhrObj){
                 // Request headers
-                xhrObj.setRequestHeader("Content-Type","application/json");
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","c28dd70cff3b417092edfd3957275908 ");
+                xhrObj.setRequestHeader("Content-Type","text/plain");
             },
             type: "POST",
             // Request body
@@ -17,6 +20,7 @@ function getSentiment(phrase) {
                     "{\"id\":\"1\",\"text\":\"" + phrase + "\"}]}",
         })
         .done(function(data) {
+			console.log(data.documents[0].score);
             return data.documents[0].score;
         })
         .fail(function() {
@@ -24,4 +28,13 @@ function getSentiment(phrase) {
         });
     });
     return null;
+	*/
+}
+
+function getSentiments(phrases) {
+	var sents = [];
+	for (var i = 0; i < phrases.length; i++) {
+		sents.push(getSentiment(phrases[i]));
+	}
+	return sents;
 }
