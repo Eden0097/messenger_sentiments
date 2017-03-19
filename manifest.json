@@ -15,7 +15,6 @@
    "content_scripts": [
 	   {
 		   "matches": ["https://www.messenger.com/t/*"],
-		   "css": [],
 		   "js": ["jquery-3.2.0.min.js", "inject.js", "SentimentCall.js",  "scrape.js"]
 	   }
    ],
