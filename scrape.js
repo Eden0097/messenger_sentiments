@@ -29,6 +29,7 @@ function scrapeMessages() {
 			sentiments.push(getSentiment(msg[i], myid));
 		}
 		injectSentiments(sentiments);
+		// averageSentiments(sentiments);
 	}
 	else {
 		for (var i = last_msg; i < messages.length; i++) {
@@ -36,6 +37,7 @@ function scrapeMessages() {
 			sentiments.push(getSentiment(msg[i], myid));
 		}
 		injectSentiments(sentiments);
+		// averageSentiments(sentiments);
 	}
 	first_load = false;
 	last_msg = messages.length;

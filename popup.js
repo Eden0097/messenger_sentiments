@@ -1,8 +1,8 @@
+var score = 0;
 window.onload = function() {
     // Displaying Score
-    var score = 0;
     var currentScore = document.getElementById('currentScore');
-    currentScore.innerHTML = "Score: " + calculateScore(score);
+    currentScore.innerHTML = "Score: " + score;
     // Displaying Time
     var currentTime = document.getElementById('currentTime');
     var currentdate = new Date(); 
@@ -15,6 +15,10 @@ window.onload = function() {
     currentTime.innerHTML = datetime;
 };
 
-function calculateScore(s) {
-    return s;
+function averageSentiments(sentiments) {
+    for (var i = 0; i < sentiments.length; i++) {
+        var sent = parseFloat(sentiments[i]);
+        score = score + sent;
+    }
+    score = score / sentiments.length;
 }
