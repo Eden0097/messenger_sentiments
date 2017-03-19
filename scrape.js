@@ -5,11 +5,12 @@
 /**
  * When the site finishes loading, we attach a listener to check if any new messages have been inserted.
  */
-var myid = chrome.runtime.id;
+var myid;
 var last_msg;
-var first_load = true;
 
 window.onload = function() {
+	myid = chrome.runtime.id;
+	last_msg = 0;
 	$('.uiScrollableAreaContent').on("DOMNodeInserted", function() {
 			scrapeMessages();
 		});
@@ -20,35 +21,14 @@ window.onload = function() {
  */
 function scrapeMessages() {
 	var msg = [];
-	var messages = document.getElementsByClassName("_58nk");
+	var box = document.getElementsByClassName("_58nk");
 	var sentiments = [];
-	if (first_load) {
-		for (var i = 0; i < messages.length; i++) {
-			msg.push(messages[i].innerText);
-			//sentiments.push(Math.random());
-			sentiments.push(getSentiment(msg[i], myid));
-		}
-		injectSentiments(sentiments);
-		// averageSentiments(sentiments);
-	}
-	else {
-		for (var i = last_msg; i < messages.length; i++) {
-			msg.push(messages[i].innerText);
-			sentiments.push(getSentiment(msg[i], myid));
-		}
-		injectSentiments(sentiments);
-		// averageSentiments(sentiments);
-	}
-	first_load = false;
-	last_msg = messages.length;
-	console.log(msg);
-	console.log(last_msg);
-}
 
-/**
- * Parses the data to fit need.
- * @param msg 	the message to be parsed
- */
-function parseData(msg) {
-	return msg;
+	for (var i = last_msg; i < box.length; i++) {
+		msg.push(box[i].innerText);
+		getSentiment(msg[i - last_msg], myid, i);
+	}
+	if (box.length !== last_msg) {
+		last_msg = box.length;
+	}
 }

@@ -9,11 +9,11 @@
  * @effects		fb messenger site
  * @modifies	each message box with its respective sentiment data
  */
-function injectSentiments(data) {
+function injectSentiments(data, min, max) {
 	var messages = document.getElementsByClassName("_58nk");
 	var sentiments = data;
-	for (var i = 0; i < messages.length; i++) {
-		var sent = parseFloat(sentiments[i]); 
+	for (var i = min; i < max; i++) {
+		var sent = parseFloat(sentiments[i - min].toString().replace(/ /g,'')); 
 		var add = "<b>[Sentiment: " + sent + " ";
 		if (sent < 0.1) { add = add + ":sob:";}
 		else if (sent < 0.3) {add = add + ":disappointed:";}
@@ -21,8 +21,23 @@ function injectSentiments(data) {
 		else if (sent < 0.7) { add = add + ":simple_smile:";}
 		else { add = add + ":relaxed:";}
 		add = add.concat(" ]</b>");
-		if (!messages[i].innerHTML.includes("<b>[Sentiment: ")) {
-			messages[i].innerHTML = messages[i].innerText + " " + add;
+		if (!messages[min + i].innerHTML.includes("<b>[Sentiment: ")) {
+			messages[min + i].innerHTML = messages[min + i].innerText + " " + add;
 		}
+	}
+}
+
+function injectSentiment(data, index) {
+	var messages = document.getElementsByClassName("_58nk");
+	var sent = parseFloat(data.toString().replace(/ /g,'')); 
+	var add = "<b>[Sentiment: " + sent + " ";
+	if (sent < 0.1) { add = add + ":sob:";}
+	else if (sent < 0.3) {add = add + ":disappointed:";}
+	else if (sent < 0.5) { add = add + ":worried:";}
+	else if (sent < 0.7) { add = add + ":simple_smile:";}
+	else { add = add + ":relaxed:";}
+	add = add.concat(" ]</b>");
+	if (!messages[index].innerHTML.includes("<b>[Sentiment: ")) {
+		messages[index].innerHTML = messages[index].innerText + " " + add;
 	}
 }
