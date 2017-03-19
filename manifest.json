@@ -15,7 +15,7 @@
    "content_scripts": [
 	   {
 		   "matches": ["https://www.messenger.com/t/*"],
-		   "js": ["jquery-3.2.0.min.js", "jquery.livequery.min.js","inject.js"]
+		   "js": ["jquery-3.2.0.min.js", "inject.js"]
 	   }
    ]
 }
