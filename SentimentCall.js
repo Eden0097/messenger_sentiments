@@ -1,27 +1,26 @@
 function getSentiment(phrase) {
-	$.post( "https://fierce-plateau-62887.herokuapp.com/MSAPITest.php", function( data ) {
-		return data.toString();
-	});
-/*
+	console.log("getting sentiment");
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", "https://fierce-plateau-62887.herokuapp.com/MSAPITest.php?text=" + phrase, false);
+	xmlHttp.send(null);
+	return xmlHttp.responseText;
+	/*
     $(function() {
         var params = {
+			"phrase": phrase
             // Request parameters
         };
         
         $.ajax({
-			url: "http://www.areslee.com/nwhack2017/test.php?" + $.param(params),
+			url: "http://www.areslee.com/nwhack2017/test1.php" + $.param(params),
             beforeSend: function(xhrObj){
                 // Request headers
                 xhrObj.setRequestHeader("Content-Type","text/plain");
             },
-            type: "POST",
-            // Request body
-            data: "{\"documents\":[" +
-                    "{\"id\":\"1\",\"text\":\"" + phrase + "\"}]}",
+			type: "GET",
         })
         .done(function(data) {
-			console.log(data.documents[0].score);
-            return data.documents[0].score;
+            return data.toString();
         })
         .fail(function() {
             alert("error");

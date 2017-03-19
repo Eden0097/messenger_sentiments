@@ -24,15 +24,17 @@ function scrapeMessages() {
 	if (first_load) {
 		for (var i = 0; i < messages.length; i++) {
 			msg.push(messages[i].innerText);
-			sentiments.push(Math.random());
-			// sentiments.push(getSentiment(msg[i]));
+			//sentiments.push(Math.random());
+			sentiments.push(getSentiment(msg[i]));
 		}
+		injectSentiments(sentiments);
 	}
 	else {
 		for (var i = last_msg; i < messages.length; i++) {
 			msg.push(messages[i].innerText);
-			injectSentiments(sentiments);
+			sentiments.push(getSentiment(msg[i]));
 		}
+		injectSentiments(sentiments);
 	}
 	first_load = false;
 	last_msg = messages.length;

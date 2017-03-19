@@ -15,14 +15,16 @@ function injectSentiments(data) {
 	for (var i = 0; i < messages.length; i++) {
 		var sent = parseFloat(sentiments[i]); 
 		var add = "<b>[Sentiment: " + sent;
-		if (sent < 0.1) { add.concat(":sob:");}
-		else if (sent < 0.3) { add.concat(":disappointed:");}
-		else if (sent < 0.5) { add.concat(":worried:");}
-		else if (sent < 0.7) { add.concat(":simple_smile:");}
-		else { add.concat(":relaxed:");}
-		add.concat("]</b>");
-		messages[i].innerHTML = messages[i].innerText + " " + add;
+		if (sent < 0.1) { add = add + ":sob:";}
+		else if (sent < 0.3) {add = add + ":disappointed:";}
+		else if (sent < 0.5) { add = add + ":worried:";}
+		else if (sent < 0.7) { add = add + ":simple_smile:";}
+		else { add = add + ":relaxed:";}
+		add = add.concat("]</b>");
+		if (!messages[i].innerHTML.includes("<b>[Sentiment: ")) {
+			messages[i].innerHTML = messages[i].innerText + " " + add;
+		}
 	}
-	emojify.setConfig({emojify_tag_type:'span', ignore_emoticon: 'true'});
-	emojify.run();
+	// emojify.setConfig({emojify_tag_type:'span', ignore_emoticon: 'true'});
+	// emojify.run();
 }
