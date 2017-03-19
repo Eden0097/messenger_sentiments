@@ -1,12 +1,24 @@
 console.log("injected");
 
 window.onload = function() {
-	var messages = [];
+	var lookedAt = false;
 	$('.uiScrollableAreaContent').bind("DOMSubtreeModified", function() {
-		messages = document.getElementsByClassName("_3oh-");
-		for (var i = 0; i < messages.length; i++) {
-			console.log(messages[i].innerText);
-			messages[i].innerText = messages[i].innerText; 
+		var msg = [];
+		if (!lookedAt) {
+			var messages = document.getElementsByClassName("_58nk");
+			for (var i = 0; i < messages.length; i++) {
+				msg.push(messages[i].innerText);
+			}
+			msg = parseData(msg);
+			console.log(msg);
+			lookedAt = true;
+
+			// var sentiments = getSentiments(msg);
 		}
 	});
 };
+
+
+function parseData(msg) {
+	return msg;
+}
