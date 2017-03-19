@@ -20,8 +20,8 @@ function scrapeMessages() {
 	var sentiments = [];
 	for (var i = 0; i < messages.length; i++) {
 		msg.push(messages[i].innerText);
-		sentiments.push(Math.random());
-		// sentiments.push(getSentiment(msg[i]));
+		// sentiments.push(Math.random());
+		sentiments.push(getSentiment(msg[i]));
 	}
 	injectSentiments(sentiments);
 }

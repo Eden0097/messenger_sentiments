@@ -14,7 +14,7 @@ function injectSentiments(data) {
 	var sentiments = data;
 	for (var i = 0; i < messages.length; i++) {
 		var sent = parseFloat(sentiments[i]); 
-		var add = "<b>[Sentiment: ";
+		var add = "<b>[Sentiment: " + sent;
 		if (sent < 0.1) { add.concat(":sob:");}
 		else if (sent < 0.3) { add.concat(":disappointed:");}
 		else if (sent < 0.5) { add.concat(":worried:");}
