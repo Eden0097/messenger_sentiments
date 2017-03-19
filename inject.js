@@ -1,23 +1,18 @@
-console.log("injected");
+/**
+ * This script puts the sentiment on to each of the messages on the fb messenger site.
+ */
 
-window.onload = function() {
-	$('.uiScrollableAreaContent').on("DOMNodeInserted", function() {
-			scrapeMessages();
-		});
-};
-
-function scrapeMessages() {
-	var msg = [];
+/**
+ * Injects the sentiment data into the fb messenger messages.
+ * @param data	the sentiment data to be injected into the website.
+ * @requires	data != null
+ * @effects		fb messenger site
+ * @modifies	each message box with its respective sentiment data
+ */
+function injectSentiments(data) {
 	var messages = document.getElementsByClassName("_58nk");
-	var sentiments = [];
+	var sentiments = data;
 	for (var i = 0; i < messages.length; i++) {
-		msg.push(messages[i].innerText);
-		sentiments.push(getSentiment(msg[i]));
+		messages[i].innerText = messages[i].innerText + " " + sentiments[i];
 	}
-
-	console.log(sentiments);
-}
-
-function parseData(msg) {
-	return msg;
 }
