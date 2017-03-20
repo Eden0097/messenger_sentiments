@@ -15,7 +15,6 @@ window.onload = function() {
 			scrapeMessages();
 		});
 };
-
 /**
  * scrapes the messages in the fb messenger site and gets the sentiment.
  */
