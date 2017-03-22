@@ -6,8 +6,8 @@
   "version": "1.0",
 
   "browser_action": {
-   "default_icon": "icon.png",
-   "default_popup": "popup.html"
+   "default_icon": "img/icon.png",
+   "default_popup": "src/popup.html"
   },
   "permissions": [
    "activeTab"
@@ -15,7 +15,7 @@
    "content_scripts": [
 	   {
 		   "matches": ["https://www.messenger.com/t/*"],
-		   "js": ["jquery-3.2.0.min.js", "inject.js", "SentimentCall.js",  "scrape.js"]
+		   "js": ["dependencies/jquery-3.2.0.min.js", "src/inject.js", "src/SentimentCall.js",  "src/scrape.js"]
 	   }
    ],
    "content_security_policy": "script-src 'self'; object-src 'self'"
